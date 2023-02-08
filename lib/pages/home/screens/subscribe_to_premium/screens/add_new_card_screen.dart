@@ -45,7 +45,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
           style: TextStyle(color: Colors.black),
         ),
         leading: IconButton(
-          onPressed: () => Navigator.of(context).pop,
+          onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
