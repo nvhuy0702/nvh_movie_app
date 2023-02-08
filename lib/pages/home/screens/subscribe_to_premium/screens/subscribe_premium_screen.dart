@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nvh_movie_app/pages/home/screens/subscribe_to_premium/screens/payment_screen.dart';
 
 class SubscribePremiumScreen extends StatefulWidget {
   const SubscribePremiumScreen({Key? key}) : super(key: key);
@@ -51,8 +52,9 @@ class _SubscribePremiumScreenState extends State<SubscribePremiumScreen> {
               height: 12,
             ),
             buildContainer(
-              9.99,
-              "tháng"
+              price: 9.99,
+              time: "tháng",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const PaymentScreen()))
             ),
             const SizedBox(
               height: 12,
@@ -61,8 +63,8 @@ class _SubscribePremiumScreenState extends State<SubscribePremiumScreen> {
               height: 12,
             ),
             buildContainer(
-                99.99,
-                "năm"
+              price :99.99,
+              time: "năm",
             )
           ],
         ),
@@ -70,51 +72,54 @@ class _SubscribePremiumScreenState extends State<SubscribePremiumScreen> {
     );
   }
 
-  Widget buildContainer(double? price, String? time) {
-    return Container(
-      height: 230,
-      width: 400,
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF2B3467), width: 2),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            "assets/images/crown.png",
-            width: 70,
-            height: 70,
-          ),
-          RichText(
-            text: TextSpan(
-              text: '\$$price ',
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30),
-              children: <TextSpan>[
-                TextSpan(
-                  text: '/$time',
-                  style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 20,
-                      color: Colors.black.withOpacity(0.6)),
-                ),
-              ],
+  Widget buildContainer({double? price, String? time,void Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 230,
+        width: 400,
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xFF2B3467), width: 2),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            Image.asset(
+              "assets/images/crown.png",
+              width: 70,
+              height: 70,
             ),
-          ),
-          const Divider(
-            thickness: 1,
-            endIndent: 16,
-            indent: 16,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          buildRow("Xem tất cả những gì bạn muốn. Quảng cáo miễn phí."),
-          buildRow("Cho phép phát trực tuyến 4K."),
-          buildRow("Chất lượng video và âm thanh tốt hơn."),
-        ],
+            RichText(
+              text: TextSpan(
+                text: '\$$price ',
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: '/$time',
+                    style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 20,
+                        color: Colors.black.withOpacity(0.6)),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(
+              thickness: 1,
+              endIndent: 16,
+              indent: 16,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            buildRow("Xem tất cả những gì bạn muốn. Quảng cáo miễn phí."),
+            buildRow("Cho phép phát trực tuyến 4K."),
+            buildRow("Chất lượng video và âm thanh tốt hơn."),
+          ],
+        ),
       ),
     );
   }
