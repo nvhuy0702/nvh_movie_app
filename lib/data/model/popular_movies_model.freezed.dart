@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'top_rated_movie.dart';
+part of 'popular_movies_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MovieTopRated _$MovieTopRatedFromJson(Map<String, dynamic> json) {
+PopularMoviesModel _$PopularMoviesModelFromJson(Map<String, dynamic> json) {
   return _MovieTopRated.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MovieTopRated {
+mixin _$PopularMoviesModel {
   int? get page => throw _privateConstructorUsedError;
   List<Result>? get results => throw _privateConstructorUsedError;
   int? get totalPages => throw _privateConstructorUsedError;
@@ -27,24 +27,24 @@ mixin _$MovieTopRated {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MovieTopRatedCopyWith<MovieTopRated> get copyWith =>
+  $PopularMoviesModelCopyWith<PopularMoviesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovieTopRatedCopyWith<$Res> {
-  factory $MovieTopRatedCopyWith(
-          MovieTopRated value, $Res Function(MovieTopRated) then) =
-      _$MovieTopRatedCopyWithImpl<$Res, MovieTopRated>;
+abstract class $PopularMoviesModelCopyWith<$Res> {
+  factory $PopularMoviesModelCopyWith(
+          PopularMoviesModel value, $Res Function(PopularMoviesModel) then) =
+      _$PopularMoviesModelCopyWithImpl<$Res, PopularMoviesModel>;
   @useResult
   $Res call(
       {int? page, List<Result>? results, int? totalPages, int? totalResults});
 }
 
 /// @nodoc
-class _$MovieTopRatedCopyWithImpl<$Res, $Val extends MovieTopRated>
-    implements $MovieTopRatedCopyWith<$Res> {
-  _$MovieTopRatedCopyWithImpl(this._value, this._then);
+class _$PopularMoviesModelCopyWithImpl<$Res, $Val extends PopularMoviesModel>
+    implements $PopularMoviesModelCopyWith<$Res> {
+  _$PopularMoviesModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -82,7 +82,7 @@ class _$MovieTopRatedCopyWithImpl<$Res, $Val extends MovieTopRated>
 
 /// @nodoc
 abstract class _$$_MovieTopRatedCopyWith<$Res>
-    implements $MovieTopRatedCopyWith<$Res> {
+    implements $PopularMoviesModelCopyWith<$Res> {
   factory _$$_MovieTopRatedCopyWith(
           _$_MovieTopRated value, $Res Function(_$_MovieTopRated) then) =
       __$$_MovieTopRatedCopyWithImpl<$Res>;
@@ -94,7 +94,7 @@ abstract class _$$_MovieTopRatedCopyWith<$Res>
 
 /// @nodoc
 class __$$_MovieTopRatedCopyWithImpl<$Res>
-    extends _$MovieTopRatedCopyWithImpl<$Res, _$_MovieTopRated>
+    extends _$PopularMoviesModelCopyWithImpl<$Res, _$_MovieTopRated>
     implements _$$_MovieTopRatedCopyWith<$Res> {
   __$$_MovieTopRatedCopyWithImpl(
       _$_MovieTopRated _value, $Res Function(_$_MovieTopRated) _then)
@@ -161,7 +161,7 @@ class _$_MovieTopRated implements _MovieTopRated {
 
   @override
   String toString() {
-    return 'MovieTopRated(page: $page, results: $results, totalPages: $totalPages, totalResults: $totalResults)';
+    return 'PopularMoviesModel(page: $page, results: $results, totalPages: $totalPages, totalResults: $totalResults)';
   }
 
   @override
@@ -196,7 +196,7 @@ class _$_MovieTopRated implements _MovieTopRated {
   }
 }
 
-abstract class _MovieTopRated implements MovieTopRated {
+abstract class _MovieTopRated implements PopularMoviesModel {
   const factory _MovieTopRated(
       {final int? page,
       final List<Result>? results,

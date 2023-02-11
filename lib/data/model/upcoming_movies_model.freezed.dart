@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'top_rated_movie.dart';
+part of 'upcoming_movies_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MovieTopRated _$MovieTopRatedFromJson(Map<String, dynamic> json) {
-  return _MovieTopRated.fromJson(json);
+MoviesUpComingModel _$MoviesUpComingModelFromJson(Map<String, dynamic> json) {
+  return _MoviesUpComingModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MovieTopRated {
+mixin _$MoviesUpComingModel {
+  Dates? get dates => throw _privateConstructorUsedError;
   int? get page => throw _privateConstructorUsedError;
   List<Result>? get results => throw _privateConstructorUsedError;
   int? get totalPages => throw _privateConstructorUsedError;
@@ -27,24 +28,30 @@ mixin _$MovieTopRated {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MovieTopRatedCopyWith<MovieTopRated> get copyWith =>
+  $MoviesUpComingModelCopyWith<MoviesUpComingModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovieTopRatedCopyWith<$Res> {
-  factory $MovieTopRatedCopyWith(
-          MovieTopRated value, $Res Function(MovieTopRated) then) =
-      _$MovieTopRatedCopyWithImpl<$Res, MovieTopRated>;
+abstract class $MoviesUpComingModelCopyWith<$Res> {
+  factory $MoviesUpComingModelCopyWith(
+          MoviesUpComingModel value, $Res Function(MoviesUpComingModel) then) =
+      _$MoviesUpComingModelCopyWithImpl<$Res, MoviesUpComingModel>;
   @useResult
   $Res call(
-      {int? page, List<Result>? results, int? totalPages, int? totalResults});
+      {Dates? dates,
+      int? page,
+      List<Result>? results,
+      int? totalPages,
+      int? totalResults});
+
+  $DatesCopyWith<$Res>? get dates;
 }
 
 /// @nodoc
-class _$MovieTopRatedCopyWithImpl<$Res, $Val extends MovieTopRated>
-    implements $MovieTopRatedCopyWith<$Res> {
-  _$MovieTopRatedCopyWithImpl(this._value, this._then);
+class _$MoviesUpComingModelCopyWithImpl<$Res, $Val extends MoviesUpComingModel>
+    implements $MoviesUpComingModelCopyWith<$Res> {
+  _$MoviesUpComingModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,12 +61,17 @@ class _$MovieTopRatedCopyWithImpl<$Res, $Val extends MovieTopRated>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? dates = freezed,
     Object? page = freezed,
     Object? results = freezed,
     Object? totalPages = freezed,
     Object? totalResults = freezed,
   }) {
     return _then(_value.copyWith(
+      dates: freezed == dates
+          ? _value.dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as Dates?,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -78,37 +90,61 @@ class _$MovieTopRatedCopyWithImpl<$Res, $Val extends MovieTopRated>
               as int?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DatesCopyWith<$Res>? get dates {
+    if (_value.dates == null) {
+      return null;
+    }
+
+    return $DatesCopyWith<$Res>(_value.dates!, (value) {
+      return _then(_value.copyWith(dates: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_MovieTopRatedCopyWith<$Res>
-    implements $MovieTopRatedCopyWith<$Res> {
-  factory _$$_MovieTopRatedCopyWith(
-          _$_MovieTopRated value, $Res Function(_$_MovieTopRated) then) =
-      __$$_MovieTopRatedCopyWithImpl<$Res>;
+abstract class _$$_MoviesUpComingModelCopyWith<$Res>
+    implements $MoviesUpComingModelCopyWith<$Res> {
+  factory _$$_MoviesUpComingModelCopyWith(_$_MoviesUpComingModel value,
+          $Res Function(_$_MoviesUpComingModel) then) =
+      __$$_MoviesUpComingModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int? page, List<Result>? results, int? totalPages, int? totalResults});
+      {Dates? dates,
+      int? page,
+      List<Result>? results,
+      int? totalPages,
+      int? totalResults});
+
+  @override
+  $DatesCopyWith<$Res>? get dates;
 }
 
 /// @nodoc
-class __$$_MovieTopRatedCopyWithImpl<$Res>
-    extends _$MovieTopRatedCopyWithImpl<$Res, _$_MovieTopRated>
-    implements _$$_MovieTopRatedCopyWith<$Res> {
-  __$$_MovieTopRatedCopyWithImpl(
-      _$_MovieTopRated _value, $Res Function(_$_MovieTopRated) _then)
+class __$$_MoviesUpComingModelCopyWithImpl<$Res>
+    extends _$MoviesUpComingModelCopyWithImpl<$Res, _$_MoviesUpComingModel>
+    implements _$$_MoviesUpComingModelCopyWith<$Res> {
+  __$$_MoviesUpComingModelCopyWithImpl(_$_MoviesUpComingModel _value,
+      $Res Function(_$_MoviesUpComingModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? dates = freezed,
     Object? page = freezed,
     Object? results = freezed,
     Object? totalPages = freezed,
     Object? totalResults = freezed,
   }) {
-    return _then(_$_MovieTopRated(
+    return _then(_$_MoviesUpComingModel(
+      dates: freezed == dates
+          ? _value.dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as Dates?,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -131,17 +167,20 @@ class __$$_MovieTopRatedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MovieTopRated implements _MovieTopRated {
-  const _$_MovieTopRated(
-      {this.page,
+class _$_MoviesUpComingModel implements _MoviesUpComingModel {
+  const _$_MoviesUpComingModel(
+      {this.dates,
+      this.page,
       final List<Result>? results,
       this.totalPages,
       this.totalResults})
       : _results = results;
 
-  factory _$_MovieTopRated.fromJson(Map<String, dynamic> json) =>
-      _$$_MovieTopRatedFromJson(json);
+  factory _$_MoviesUpComingModel.fromJson(Map<String, dynamic> json) =>
+      _$$_MoviesUpComingModelFromJson(json);
 
+  @override
+  final Dates? dates;
   @override
   final int? page;
   final List<Result>? _results;
@@ -161,14 +200,15 @@ class _$_MovieTopRated implements _MovieTopRated {
 
   @override
   String toString() {
-    return 'MovieTopRated(page: $page, results: $results, totalPages: $totalPages, totalResults: $totalResults)';
+    return 'MoviesUpComingModel(dates: $dates, page: $page, results: $results, totalPages: $totalPages, totalResults: $totalResults)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MovieTopRated &&
+            other is _$_MoviesUpComingModel &&
+            (identical(other.dates, dates) || other.dates == dates) &&
             (identical(other.page, page) || other.page == page) &&
             const DeepCollectionEquality().equals(other._results, _results) &&
             (identical(other.totalPages, totalPages) ||
@@ -179,33 +219,37 @@ class _$_MovieTopRated implements _MovieTopRated {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, page,
+  int get hashCode => Object.hash(runtimeType, dates, page,
       const DeepCollectionEquality().hash(_results), totalPages, totalResults);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MovieTopRatedCopyWith<_$_MovieTopRated> get copyWith =>
-      __$$_MovieTopRatedCopyWithImpl<_$_MovieTopRated>(this, _$identity);
+  _$$_MoviesUpComingModelCopyWith<_$_MoviesUpComingModel> get copyWith =>
+      __$$_MoviesUpComingModelCopyWithImpl<_$_MoviesUpComingModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MovieTopRatedToJson(
+    return _$$_MoviesUpComingModelToJson(
       this,
     );
   }
 }
 
-abstract class _MovieTopRated implements MovieTopRated {
-  const factory _MovieTopRated(
-      {final int? page,
+abstract class _MoviesUpComingModel implements MoviesUpComingModel {
+  const factory _MoviesUpComingModel(
+      {final Dates? dates,
+      final int? page,
       final List<Result>? results,
       final int? totalPages,
-      final int? totalResults}) = _$_MovieTopRated;
+      final int? totalResults}) = _$_MoviesUpComingModel;
 
-  factory _MovieTopRated.fromJson(Map<String, dynamic> json) =
-      _$_MovieTopRated.fromJson;
+  factory _MoviesUpComingModel.fromJson(Map<String, dynamic> json) =
+      _$_MoviesUpComingModel.fromJson;
 
+  @override
+  Dates? get dates;
   @override
   int? get page;
   @override
@@ -216,7 +260,153 @@ abstract class _MovieTopRated implements MovieTopRated {
   int? get totalResults;
   @override
   @JsonKey(ignore: true)
-  _$$_MovieTopRatedCopyWith<_$_MovieTopRated> get copyWith =>
+  _$$_MoviesUpComingModelCopyWith<_$_MoviesUpComingModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Dates _$DatesFromJson(Map<String, dynamic> json) {
+  return _Dates.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Dates {
+  DateTime? get maximum => throw _privateConstructorUsedError;
+  DateTime? get minimum => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DatesCopyWith<Dates> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DatesCopyWith<$Res> {
+  factory $DatesCopyWith(Dates value, $Res Function(Dates) then) =
+      _$DatesCopyWithImpl<$Res, Dates>;
+  @useResult
+  $Res call({DateTime? maximum, DateTime? minimum});
+}
+
+/// @nodoc
+class _$DatesCopyWithImpl<$Res, $Val extends Dates>
+    implements $DatesCopyWith<$Res> {
+  _$DatesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? maximum = freezed,
+    Object? minimum = freezed,
+  }) {
+    return _then(_value.copyWith(
+      maximum: freezed == maximum
+          ? _value.maximum
+          : maximum // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      minimum: freezed == minimum
+          ? _value.minimum
+          : minimum // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_DatesCopyWith<$Res> implements $DatesCopyWith<$Res> {
+  factory _$$_DatesCopyWith(_$_Dates value, $Res Function(_$_Dates) then) =
+      __$$_DatesCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({DateTime? maximum, DateTime? minimum});
+}
+
+/// @nodoc
+class __$$_DatesCopyWithImpl<$Res> extends _$DatesCopyWithImpl<$Res, _$_Dates>
+    implements _$$_DatesCopyWith<$Res> {
+  __$$_DatesCopyWithImpl(_$_Dates _value, $Res Function(_$_Dates) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? maximum = freezed,
+    Object? minimum = freezed,
+  }) {
+    return _then(_$_Dates(
+      maximum: freezed == maximum
+          ? _value.maximum
+          : maximum // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      minimum: freezed == minimum
+          ? _value.minimum
+          : minimum // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Dates implements _Dates {
+  const _$_Dates({this.maximum, this.minimum});
+
+  factory _$_Dates.fromJson(Map<String, dynamic> json) =>
+      _$$_DatesFromJson(json);
+
+  @override
+  final DateTime? maximum;
+  @override
+  final DateTime? minimum;
+
+  @override
+  String toString() {
+    return 'Dates(maximum: $maximum, minimum: $minimum)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Dates &&
+            (identical(other.maximum, maximum) || other.maximum == maximum) &&
+            (identical(other.minimum, minimum) || other.minimum == minimum));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, maximum, minimum);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DatesCopyWith<_$_Dates> get copyWith =>
+      __$$_DatesCopyWithImpl<_$_Dates>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DatesToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Dates implements Dates {
+  const factory _Dates({final DateTime? maximum, final DateTime? minimum}) =
+      _$_Dates;
+
+  factory _Dates.fromJson(Map<String, dynamic> json) = _$_Dates.fromJson;
+
+  @override
+  DateTime? get maximum;
+  @override
+  DateTime? get minimum;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DatesCopyWith<_$_Dates> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -1,13 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'top_rated_movie.dart';
+part of 'upcoming_movies_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MovieTopRated _$$_MovieTopRatedFromJson(Map<String, dynamic> json) =>
-    _$_MovieTopRated(
+_$_MoviesUpComingModel _$$_MoviesUpComingModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_MoviesUpComingModel(
+      dates: json['dates'] == null
+          ? null
+          : Dates.fromJson(json['dates'] as Map<String, dynamic>),
       page: json['page'] as int?,
       results: (json['results'] as List<dynamic>?)
           ?.map((e) => Result.fromJson(e as Map<String, dynamic>))
@@ -16,12 +20,28 @@ _$_MovieTopRated _$$_MovieTopRatedFromJson(Map<String, dynamic> json) =>
       totalResults: json['totalResults'] as int?,
     );
 
-Map<String, dynamic> _$$_MovieTopRatedToJson(_$_MovieTopRated instance) =>
+Map<String, dynamic> _$$_MoviesUpComingModelToJson(
+        _$_MoviesUpComingModel instance) =>
     <String, dynamic>{
+      'dates': instance.dates,
       'page': instance.page,
       'results': instance.results,
       'totalPages': instance.totalPages,
       'totalResults': instance.totalResults,
+    };
+
+_$_Dates _$$_DatesFromJson(Map<String, dynamic> json) => _$_Dates(
+      maximum: json['maximum'] == null
+          ? null
+          : DateTime.parse(json['maximum'] as String),
+      minimum: json['minimum'] == null
+          ? null
+          : DateTime.parse(json['minimum'] as String),
+    );
+
+Map<String, dynamic> _$$_DatesToJson(_$_Dates instance) => <String, dynamic>{
+      'maximum': instance.maximum?.toIso8601String(),
+      'minimum': instance.minimum?.toIso8601String(),
     };
 
 _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(

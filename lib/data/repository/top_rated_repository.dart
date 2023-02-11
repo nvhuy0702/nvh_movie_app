@@ -1,16 +1,34 @@
 
 import 'dart:async';
 
+import '../model/popular_movies_model.dart';
 import '../model/top_rated_movie.dart';
-import '../service/top_rated_service.dart';
+import '../model/upcoming_movies_model.dart';
+import '../service/movies_service.dart';
 
-class TopRatedRepository {
-  FutureOr<MovieTopRated> getUser() async {
+class MoviesRepository {
+  FutureOr<MovieTopRated> getMoviesTopRated() async {
     try {
-      final result = await TopRatedService().getData();
-
-      print('result ==> $result');
+      final result = await MoviesService().getMovieTopRated();
       return MovieTopRated.fromJson(result);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  FutureOr<PopularMoviesModel> getMoviesPopular() async {
+    try {
+      final result = await MoviesService().getMoviePopular();
+      return PopularMoviesModel.fromJson(result);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  FutureOr<MoviesUpComingModel> getMoviesUpComing() async {
+    try {
+      final result = await MoviesService().getMovieUpComing();
+      return MoviesUpComingModel.fromJson(result);
     } catch (e) {
       throw Exception(e);
     }

@@ -1,27 +1,38 @@
 // To parse this JSON data, do
 //
-//     final movieTopRated = movieTopRatedFromJson(jsonString);
+//     final moviesUpComing = moviesUpComingFromJson(jsonString);
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-part 'top_rated_movie.freezed.dart';
-part 'top_rated_movie.g.dart';
+part 'upcoming_movies_model.freezed.dart';
+part 'upcoming_movies_model.g.dart';
 
-MovieTopRated movieTopRatedFromJson(String str) => MovieTopRated.fromJson(json.decode(str));
+MoviesUpComingModel moviesUpComingFromJson(String str) => MoviesUpComingModel.fromJson(json.decode(str));
 
-String movieTopRatedToJson(MovieTopRated data) => json.encode(data.toJson());
+String moviesUpComingToJson(MoviesUpComingModel data) => json.encode(data.toJson());
 
 @freezed
-class MovieTopRated with _$MovieTopRated {
-  const factory MovieTopRated({
+class MoviesUpComingModel with _$MoviesUpComingModel {
+  const factory MoviesUpComingModel({
+    Dates? dates,
     int? page,
     List<Result>? results,
     int? totalPages,
     int? totalResults,
-  }) = _MovieTopRated;
+  }) = _MoviesUpComingModel;
 
-  factory MovieTopRated.fromJson(Map<String, dynamic> json) => _$MovieTopRatedFromJson(json);
+  factory MoviesUpComingModel.fromJson(Map<String, dynamic> json) => _$MoviesUpComingModelFromJson(json);
+}
+
+@freezed
+class Dates with _$Dates {
+  const factory Dates({
+    DateTime? maximum,
+    DateTime? minimum,
+  }) = _Dates;
+
+  factory Dates.fromJson(Map<String, dynamic> json) => _$DatesFromJson(json);
 }
 
 @freezed

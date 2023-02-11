@@ -5,23 +5,23 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-part 'top_rated_movie.freezed.dart';
-part 'top_rated_movie.g.dart';
+part 'popular_movies_model.freezed.dart';
+part 'popular_movies_model.g.dart';
 
-MovieTopRated movieTopRatedFromJson(String str) => MovieTopRated.fromJson(json.decode(str));
+PopularMoviesModel popularMoviesModelFromJson(String str) => PopularMoviesModel.fromJson(json.decode(str));
 
-String movieTopRatedToJson(MovieTopRated data) => json.encode(data.toJson());
+String popularMoviesModelToJson(PopularMoviesModel data) => json.encode(data.toJson());
 
 @freezed
-class MovieTopRated with _$MovieTopRated {
-  const factory MovieTopRated({
+class PopularMoviesModel with _$PopularMoviesModel {
+  const factory PopularMoviesModel({
     int? page,
     List<Result>? results,
     int? totalPages,
     int? totalResults,
   }) = _MovieTopRated;
 
-  factory MovieTopRated.fromJson(Map<String, dynamic> json) => _$MovieTopRatedFromJson(json);
+  factory PopularMoviesModel.fromJson(Map<String, dynamic> json) => _$PopularMoviesModelFromJson(json);
 }
 
 @freezed

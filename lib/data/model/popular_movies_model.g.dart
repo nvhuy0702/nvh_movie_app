@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'top_rated_movie.dart';
+part of 'popular_movies_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
