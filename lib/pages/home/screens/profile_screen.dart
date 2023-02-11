@@ -17,118 +17,115 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DisplayImage(
-                imagePath: 'assets/images/avatar.png',
-                onPressed: () {},
-              ),
-              RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
-                  text: "Văn Huy\n",
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'nkhuy1@mailinator.com',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 16),
-                    ),
-                  ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: MediaQuery.of(context).viewInsets.top + kToolbarHeight),
+                DisplayImage(
+                  imagePath: 'assets/images/avatar.png',
+                  onPressed: () {},
                 ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              InkWell(
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SubscribePremiumScreen())),
-                child: Container(
-                  height: 100,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: const Color(0xFF2B3467),
-                      width: 2,
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    text: "Văn Huy\n",
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        "assets/images/crown.png",
-                        width: 50,
-                        height: 50,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'nkhuy1@mailinator.com',
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 16),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RichText(
-                            textAlign: TextAlign.start,
-                            text: const TextSpan(
-                              text: "Tham gia gói Premium\n",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text:
-                                      'Xem phim Full-HD,không hạn chế \nvà không có quảng cáo',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Icon(Icons.arrow_forward_ios)
                     ],
                   ),
                 ),
-              ),
-              buildRow(
-                pathIcon: "assets/images/user.png",
-                title: "Chỉnh sửa hồ sơ"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/bell.png",
-                  title: "Thông báo"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/download.png",
-                  title: "Tải xuống"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/security.png",
-                  title: "Bảo mật"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/language.png",
-                  title: "Ngôn ngữ"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/night_mode.png",
-                  title: "Dark mode"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/help_desk.png",
-                  title: "Trung tâm hỗ trợ"
-              ),
-              buildRow(
-                  pathIcon: "assets/images/exit.png",
-                  title: "Thoát"
-              ),
-            ],
+                const SizedBox(
+                  height: 24,
+                ),
+                InkWell(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SubscribePremiumScreen())),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: const Color(0xFF2B3467),
+                        width: 2,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          "assets/images/crown.png",
+                          width: 30,
+                          height: 30,
+                        ),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: const TextSpan(
+                            text: "Tham gia gói Premium\n",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text:
+                                    'Xem phim Full-HD,không hạn chế \nvà không có quảng cáo',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.arrow_forward_ios)
+                      ],
+                    ),
+                  ),
+                ),
+                buildRow(
+                  pathIcon: "assets/images/user.png",
+                  title: "Chỉnh sửa hồ sơ"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/bell.png",
+                    title: "Thông báo"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/download.png",
+                    title: "Tải xuống"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/security.png",
+                    title: "Bảo mật"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/language.png",
+                    title: "Ngôn ngữ"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/night_mode.png",
+                    title: "Dark mode"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/help_desk.png",
+                    title: "Trung tâm hỗ trợ"
+                ),
+                buildRow(
+                    pathIcon: "assets/images/exit.png",
+                    title: "Thoát"
+                ),
+              ],
+            ),
           ),
         ),
       ),

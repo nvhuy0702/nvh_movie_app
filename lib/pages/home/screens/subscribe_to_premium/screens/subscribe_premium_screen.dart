@@ -25,48 +25,48 @@ class _SubscribePremiumScreenState extends State<SubscribePremiumScreen> {
       ),
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 48,
-            ),
-            const Text(
-              "Đăng ký Premium",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF2B3467),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              const Text(
+                "Đăng ký Premium",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2B3467),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            const Text(
-              "Thỏa thích xem phim Full-HD\n mà không có hạn chế và không có quảng cáo",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
+              const SizedBox(
+                height: 12,
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            buildContainer(
-              price: 9.99,
-              time: "tháng",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const PaymentScreen()))
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            buildContainer(
-              price :99.99,
-              time: "năm",
-            )
-          ],
+              const Text(
+                "Thỏa thích xem phim Full-HD\n mà không có hạn chế và không có quảng cáo",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              buildContainer(
+                price: 9.99,
+                time: "tháng",
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const PaymentScreen()))
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              buildContainer(
+                price :99.99,
+                time: "năm",
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -115,7 +115,7 @@ class _SubscribePremiumScreenState extends State<SubscribePremiumScreen> {
             const SizedBox(
               height: 10,
             ),
-            buildRow("Xem tất cả những gì bạn muốn. Quảng cáo miễn phí."),
+            buildRow("Xem tất cả những gì bạn muốn.\n Quảng cáo miễn phí."),
             buildRow("Cho phép phát trực tuyến 4K."),
             buildRow("Chất lượng video và âm thanh tốt hơn."),
           ],
