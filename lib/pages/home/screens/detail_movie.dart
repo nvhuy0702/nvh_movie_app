@@ -131,220 +131,26 @@ class _DetailMovieState extends State<DetailMovie> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
-                      Icons.star,
-                      color: Color(0xFF2B3467),
-                    ),
-                    Text("${data?.voteAverage.toString()}"),
-                    TextButton(
-                      onPressed: () {
-                        showModalBottomSheet<void>(
-                            context: context,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            builder: (BuildContext context) {
-                              return Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  const SizedBox(
-                                    height: 12,
-                                  ),
-                                  Container(
-                                    height: 10,
-                                    width: 80,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 24,
-                                  ),
-                                  const Text(
-                                    "Xếp hạng",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  const Divider(
-                                    thickness: 1,
-                                  ),
-                                  const SizedBox(
-                                    height: 12,
-                                  ),
-                                  IntrinsicHeight(
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                text: '${data?.voteAverage.toString()} ',
-                                                style: const TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 30),
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: '/10',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontSize: 20,
-                                                        color: Colors.black
-                                                            .withOpacity(0.6)),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 16,
-                                            ),
-                                            RatingBar.builder(
-                                              initialRating: 3,
-                                              minRating: 1,
-                                              itemSize: 20,
-                                              direction: Axis.horizontal,
-                                              allowHalfRating: true,
-                                              itemCount: 5,
-                                              itemPadding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 4.0),
-                                              itemBuilder: (context, _) =>
-                                                  const Icon(
-                                                Icons.star,
-                                                color: Colors.amber,
-                                              ),
-                                              onRatingUpdate: (rating) {},
-                                            ),
-                                            const SizedBox(
-                                              height: 8,
-                                            ),
-                                            Text(
-                                              '(${data?.voteCount} đánh giá)',
-                                            ),
-                                          ],
-                                        ),
-                                        const VerticalDivider(
-                                          thickness: 1,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: const [
-                                              ChartRating(label: '5', pct: 89),
-                                              ChartRating(label: '4', pct: 8),
-                                              ChartRating(label: '3', pct: 2),
-                                              ChartRating(label: '4', pct: 1),
-                                              ChartRating(label: '1', pct: 0),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 12,
-                                  ),
-                                  const Divider(
-                                    thickness: 1,
-                                  ),
-                                  RatingBar.builder(
-                                    initialRating: 3,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemPadding: const EdgeInsets.symmetric(
-                                        horizontal: 4.0),
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {},
-                                  ),
-                                  const SizedBox(
-                                    height: 24,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 16.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              side: const BorderSide(
-                                                color: Color(0xff2B3467),
-                                              ),
-                                            ),
-                                            padding: const EdgeInsets.all(12),
-                                            backgroundColor: Colors.white,
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16.0),
-                                            child: Text(
-                                              "Hủy",
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors.black),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 24,
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                              ),
-                                              padding: const EdgeInsets.all(12),
-                                              backgroundColor:
-                                                  const Color(0xff2B3467)),
-                                          child: const Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16.0),
-                                            child: Text(
-                                              "Bình chọn",
-                                              style: TextStyle(fontSize: 18),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              );
-                            });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        minimumSize: const Size(10, 0),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      child: const Text(
-                        ">",
-                        style: TextStyle(
-                          color: Color(0xFF2B3467),
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    Text(DateFormat("yyyy-MM-dd").format(data?.releaseDate ?? DateTime.now())),
+                   Row(
+                     children: [
+                       const Icon(
+                         Icons.star,
+                         color: Color(0xFF2B3467),
+                       ),
+                       const SizedBox(
+                         width: 8,
+                       ),
+                       GestureDetector(
+                           onTap: ()=>  buildShowModalBottomSheet(context, data),
+                           child: Text("${data?.voteAverage.toString()}")),
+                       const SizedBox(
+                         width: 16,
+                       ),
+                       Text(DateFormat("yyyy-MM-dd").format(data?.releaseDate ?? DateTime.now())),
+                     ],
+                   ),
                     _typeMovie(
                         content: "${data?.genreIds?.first} - ${data?.genreIds?.last}",
                         style: const TextStyle(
@@ -538,6 +344,184 @@ class _DetailMovieState extends State<DetailMovie> {
         ),
       ),
     );
+  }
+
+  Future<void> buildShowModalBottomSheet(BuildContext context, Result? data) {
+    return showModalBottomSheet<void>(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        builder: (BuildContext context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const SizedBox(
+                height: 12,
+              ),
+              Container(
+                height: 10,
+                width: 80,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              const Text(
+                "Xếp hạng",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              IntrinsicHeight(
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            text: '${data?.voteAverage.toString()} ',
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '/10',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 20,
+                                    color: Colors.black.withOpacity(0.6)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        RatingBar.builder(
+                          initialRating: 3,
+                          minRating: 1,
+                          itemSize: 20,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          '(${data?.voteCount} đánh giá)',
+                        ),
+                      ],
+                    ),
+                    const VerticalDivider(
+                      thickness: 1,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          ChartRating(label: '5', pct: 89),
+                          ChartRating(label: '4', pct: 8),
+                          ChartRating(label: '3', pct: 2),
+                          ChartRating(label: '4', pct: 1),
+                          ChartRating(label: '1', pct: 0),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              const Divider(
+                thickness: 1,
+              ),
+              RatingBar.builder(
+                initialRating: 3,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {},
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: const BorderSide(
+                            color: Color(0xff2B3467),
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(12),
+                        backgroundColor: Colors.white,
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          "Hủy",
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          backgroundColor: const Color(0xff2B3467)),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          "Bình chọn",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Widget _typeMovie({String? content, TextStyle? style}) {
