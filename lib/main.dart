@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nvh_movie_app/pages/on_boarding/screens/on_boarding_screen.dart';
 
-import 'data/repository/top_rated_repository.dart';
-
 void main() {
   runApp(const MyApp());
 }

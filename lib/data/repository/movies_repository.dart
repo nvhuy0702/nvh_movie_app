@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import '../model/detail_movies_model.dart';
 import '../model/popular_movies_model.dart';
 import '../model/top_rated_movie.dart';
 import '../model/upcoming_movies_model.dart';
@@ -29,6 +30,15 @@ class MoviesRepository {
     try {
       final result = await MoviesService().getMovieUpComing();
       return MoviesUpComingModel.fromJson(result);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  FutureOr<MovieDetailModel> getMoviesDetail({String? movieId}) async {
+    try {
+      final result = await MoviesService().getMovieDetails(movieId: movieId);
+      return MovieDetailModel.fromJson(result);
     } catch (e) {
       throw Exception(e);
     }

@@ -38,7 +38,7 @@ class Result with _$Result {
     String? overview,
     double? popularity,
     String? posterPath,
-    DateTime? releaseDate,
+    @JsonKey(name: 'release_date') DateTime? releaseDate,
     String? title,
     bool? video,
   }) = _Result;

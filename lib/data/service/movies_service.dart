@@ -32,5 +32,14 @@ class MoviesService {
       throw Exception(e.message);
     }
   }
+  Future getMovieDetails({String? movieId}) async {
+    try {
+      final response =
+      await Dio().get("https://api.themoviedb.org/3/movie/$movieId?api_key=b885224e32ae22bdc4af7c0177ae0eb7&language=en-US");
+      return response.data;
+    } on DioError catch (e) {
+      throw Exception(e.message);
+    }
+  }
 
 }

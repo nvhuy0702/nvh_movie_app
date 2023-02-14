@@ -17,35 +17,30 @@ class _ChartRatingState extends State<ChartRating> {
           fontSize: 15,
           color: Colors.black
         )),
-        const SizedBox(width: 8),
         const Icon(Icons.star, color: Colors.amber),
         SizedBox(
-          width: 160,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child:
-            Stack(
-                children: [
-                  Container(
-                    height: 10,
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                    child: const Text(''),
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: Stack(
+              children: [
+                Container(
+                  height: 10,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(20)
                   ),
-                  Container(
-                    height: 10,
-                    width: MediaQuery.of(context).size.width * (widget.pct/100) * 0.7,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                    child: const Text(''),
+                  child: const Text(''),
+                ),
+                Container(
+                  height: 10,
+                  width: MediaQuery.of(context).size.width * (widget.pct/100) * 0.5,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(20)
                   ),
-                ]
-            ),
+                  child: const Text(''),
+                ),
+              ]
           ),
         ),
         Text('${widget.pct}%', style: const TextStyle(

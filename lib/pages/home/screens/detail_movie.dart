@@ -4,21 +4,25 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:readmore/readmore.dart';
 import 'package:video_player/video_player.dart';
 import 'package:screenshot/screenshot.dart';
+import '../../../data/model/detail_movies_model.dart';
+import '../../../data/model/top_rated_movie.dart';
 import '../widget/chart_rating.dart';
 import '../widget/comment.dart';
 import '../widget/more_like_this.dart';
 import '../widget/video_play.dart';
+import 'package:intl/intl.dart';
 
 class DetailMovie extends StatefulWidget {
-  const DetailMovie({Key? key}) : super(key: key);
+  final MovieTopRated? movieTopRated;
+  final int index;
+  final MovieDetailModel? movieDetailModel;
+  const DetailMovie({Key? key, this.movieTopRated, required this.index,this.movieDetailModel}) : super(key: key);
 
   @override
   State<DetailMovie> createState() => _DetailMovieState();
 }
 
 class _DetailMovieState extends State<DetailMovie> {
-  final String description =
-      "Flutter is Google’s mobile UI framework for crafting high-quality native interfaces on iOS and Android in record time. Flutter works with existing code, is used by developers and organizations around the world, and is free and open source.";
   late VideoPlayerController _controller;
 
   late Future<void> _initializeVideoPlayerFuture;
@@ -30,7 +34,6 @@ class _DetailMovieState extends State<DetailMovie> {
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
     _initializeVideoPlayerFuture = _controller.initialize();
-
     _controller.setLooping(true);
     super.initState();
   }
@@ -45,6 +48,7 @@ class _DetailMovieState extends State<DetailMovie> {
 
   @override
   Widget build(BuildContext context) {
+    var data = widget.movieTopRated?.results?[widget.index];
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -53,8 +57,8 @@ class _DetailMovieState extends State<DetailMovie> {
             floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/transformers.jpeg",
+              background: Image.network(
+                "https://image.tmdb.org/t/p/w500${data?.backdropPath}",
                 fit: BoxFit.cover,
               ),
             ),
@@ -71,10 +75,10 @@ class _DetailMovieState extends State<DetailMovie> {
                 ),
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Transformers',
-                        style: TextStyle(
+                        data?.title ?? "",
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 28,
                         ),
@@ -131,7 +135,7 @@ class _DetailMovieState extends State<DetailMovie> {
                       Icons.star,
                       color: Color(0xFF2B3467),
                     ),
-                    const Text("6.9"),
+                    Text("${data?.voteAverage.toString()}"),
                     TextButton(
                       onPressed: () {
                         showModalBottomSheet<void>(
@@ -177,7 +181,7 @@ class _DetailMovieState extends State<DetailMovie> {
                                           children: [
                                             RichText(
                                               text: TextSpan(
-                                                text: '6.9 ',
+                                                text: '${data?.voteAverage.toString()} ',
                                                 style: const TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
@@ -218,8 +222,8 @@ class _DetailMovieState extends State<DetailMovie> {
                                             const SizedBox(
                                               height: 8,
                                             ),
-                                            const Text(
-                                              '(72 người xem)',
+                                            Text(
+                                              '(${data?.voteCount} đánh giá)',
                                             ),
                                           ],
                                         ),
@@ -338,19 +342,11 @@ class _DetailMovieState extends State<DetailMovie> {
                         ),
                       ),
                     ),
-                    const Text("2023"),
+                    Text(DateFormat("yyyy-MM-dd").format(data?.releaseDate ?? DateTime.now())),
                     _typeMovie(
-                        content: "13+",
+                        content: "${data?.genreIds?.first} - ${data?.genreIds?.last}",
                         style: const TextStyle(
                             color: Color(0xFF2B3467), fontSize: 16)),
-                    _typeMovie(
-                        content: "Hoa Kỳ",
-                        style: const TextStyle(
-                            color: Color(0xFF2B3467), fontSize: 16)),
-                    _typeMovie(
-                        content: "Phụ đề",
-                        style: const TextStyle(
-                            color: Color(0xFF2B3467), fontSize: 16))
                   ],
                 ),
                 const SizedBox(
@@ -433,10 +429,10 @@ class _DetailMovieState extends State<DetailMovie> {
                   ),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 16,
                 ),
                 ReadMoreText(
-                  description,
+                  data?.overview ?? "",
                   trimLines: 2,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'Show more',
@@ -526,7 +522,7 @@ class _DetailMovieState extends State<DetailMovie> {
                             const VideoPlayerScreen(),
                             const MoreLikeThis(),
                             CommentWidget(
-                              description: description,
+                              description: "",
                             )
                           ],
                         ),
@@ -544,7 +540,7 @@ class _DetailMovieState extends State<DetailMovie> {
 
   Widget _typeMovie({String? content, TextStyle? style}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFF2B3467), width: 2),
         borderRadius: BorderRadius.circular(8),

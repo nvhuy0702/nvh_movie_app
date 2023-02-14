@@ -7,7 +7,7 @@ import 'package:nvh_movie_app/pages/home/screens/profile_screen.dart';
 import 'package:nvh_movie_app/pages/home/screens/top_movie_screen.dart';
 import 'package:sliver_header_delegate/sliver_header_delegate.dart';
 
-import '../../../data/repository/top_rated_repository.dart';
+import '../../../data/repository/movies_repository.dart';
 import '../bloc/home_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,11 +20,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   PageController _pageController = PageController();
-  List<String> dbMovies = [
-    "assets/images/dr_strange.jpg",
-    "assets/images/spiderman_poster.jpeg",
-    "assets/images/transformers.jpeg",
-  ];
   final TextEditingController _search = TextEditingController();
   final _focusNode = FocusNode();
 
@@ -152,13 +147,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 8),
                                         child: InkWell(
-                                          onTap: () =>
-                                              Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const DetailMovie(),
-                                            ),
-                                          ),
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (_) =>
+                                                    DetailMovie(
+                                                      index: index,
+                                                      movieTopRated: state.movieTopRated,
+                                                    ),
+                                              ),
+                                            );
+                                            _bloc.add(FetchMovieDetail(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
+                                          },
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(12),

@@ -433,6 +433,7 @@ mixin _$Result {
   String? get overview => throw _privateConstructorUsedError;
   double? get popularity => throw _privateConstructorUsedError;
   String? get posterPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'release_date')
   DateTime? get releaseDate => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   bool? get video => throw _privateConstructorUsedError;
@@ -459,7 +460,7 @@ abstract class $ResultCopyWith<$Res> {
       String? overview,
       double? popularity,
       String? posterPath,
-      DateTime? releaseDate,
+      @JsonKey(name: 'release_date') DateTime? releaseDate,
       String? title,
       bool? video});
 }
@@ -571,7 +572,7 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       String? overview,
       double? popularity,
       String? posterPath,
-      DateTime? releaseDate,
+      @JsonKey(name: 'release_date') DateTime? releaseDate,
       String? title,
       bool? video});
 }
@@ -677,7 +678,7 @@ class _$_Result implements _Result {
       this.overview,
       this.popularity,
       this.posterPath,
-      this.releaseDate,
+      @JsonKey(name: 'release_date') this.releaseDate,
       this.title,
       this.video})
       : _genreIds = genreIds;
@@ -722,6 +723,7 @@ class _$_Result implements _Result {
   @override
   final String? posterPath;
   @override
+  @JsonKey(name: 'release_date')
   final DateTime? releaseDate;
   @override
   final String? title;
@@ -809,7 +811,7 @@ abstract class _Result implements Result {
       final String? overview,
       final double? popularity,
       final String? posterPath,
-      final DateTime? releaseDate,
+      @JsonKey(name: 'release_date') final DateTime? releaseDate,
       final String? title,
       final bool? video}) = _$_Result;
 
@@ -844,6 +846,7 @@ abstract class _Result implements Result {
   @override
   String? get posterPath;
   @override
+  @JsonKey(name: 'release_date')
   DateTime? get releaseDate;
   @override
   String? get title;

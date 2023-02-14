@@ -57,9 +57,9 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
       overview: json['overview'] as String?,
       popularity: (json['popularity'] as num?)?.toDouble(),
       posterPath: json['posterPath'] as String?,
-      releaseDate: json['releaseDate'] == null
+      releaseDate: json['release_date'] == null
           ? null
-          : DateTime.parse(json['releaseDate'] as String),
+          : DateTime.parse(json['release_date'] as String),
       title: json['title'] as String?,
       video: json['video'] as bool?,
     );
@@ -76,7 +76,7 @@ Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'overview': instance.overview,
       'popularity': instance.popularity,
       'posterPath': instance.posterPath,
-      'releaseDate': instance.releaseDate?.toIso8601String(),
+      'release_date': instance.releaseDate?.toIso8601String(),
       'title': instance.title,
       'video': instance.video,
     };
