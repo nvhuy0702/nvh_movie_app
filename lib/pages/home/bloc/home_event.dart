@@ -14,3 +14,7 @@ class FetchMovieDetail extends HomeEvent {
   final String? movieId;
   FetchMovieDetail({this.movieId});
 }
+class FetchCastCrew extends HomeEvent {
+  final String? movieId;
+  FetchCastCrew({this.movieId});
+}

@@ -1,6 +1,8 @@
 
 import 'dart:async';
 
+import 'package:nvh_movie_app/data/model/cast_crew_model.dart';
+
 import '../model/detail_movies_model.dart';
 import '../model/popular_movies_model.dart';
 import '../model/top_rated_movie.dart';
@@ -39,6 +41,14 @@ class MoviesRepository {
     try {
       final result = await MoviesService().getMovieDetails(movieId: movieId);
       return MovieDetailModel.fromJson(result);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+  FutureOr<CastCrewModel> getCastCrew({String? movieId}) async {
+    try {
+      final result = await MoviesService().getCastCrew(movieId: "238");
+      return CastCrewModel.fromJson(result);
     } catch (e) {
       throw Exception(e);
     }

@@ -41,5 +41,14 @@ class MoviesService {
       throw Exception(e.message);
     }
   }
+  Future getCastCrew({String? movieId}) async {
+    try {
+      final response =
+      await Dio().get("https://api.themoviedb.org/3/movie/$movieId/credits?api_key=b885224e32ae22bdc4af7c0177ae0eb7&language=en-US&page=1");
+      return response.data;
+    } on DioError catch (e) {
+      throw Exception(e.message);
+    }
+  }
 
 }

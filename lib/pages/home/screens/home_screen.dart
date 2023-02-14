@@ -148,16 +148,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                             vertical: 8),
                                         child: InkWell(
                                           onTap: () {
-                                            Navigator.of(context).push(
+                                            _bloc.add(FetchMovieDetail(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
+                                            _bloc.add(FetchCastCrew(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
+                                            print('state.castCrewModel => ${state.castCrewModel?.cast?[index].knownForDepartment}');
+                                            Future.delayed(Duration(seconds: 1)).then((value) => Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: (_) =>
                                                     DetailMovie(
                                                       index: index,
                                                       movieTopRated: state.movieTopRated,
+                                                      castCrewModel: state.castCrewModel,
+                                                      movieDetailModel: state.moviesDetail,
                                                     ),
                                               ),
-                                            );
-                                            _bloc.add(FetchMovieDetail(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
+                                            ));
                                           },
                                           child: ClipRRect(
                                             borderRadius:

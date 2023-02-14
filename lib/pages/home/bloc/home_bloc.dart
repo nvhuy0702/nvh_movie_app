@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../data/model/cast_crew_model.dart';
 import '../../../data/model/detail_movies_model.dart';
 import '../../../data/model/popular_movies_model.dart';
 import '../../../data/model/top_rated_movie.dart';
@@ -21,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchMoviesPopular>(_fetchMoviesPopular);
     on<FetchMoviesUpComing>(_fetchMoviesUpcoming);
     on<FetchMovieDetail>(_fetchMoviesDetail);
+    on<FetchCastCrew>(_fetchCastCrew);
   }
 
   FutureOr<void> _fetchMoviesTopRated(FetchMoviesTopRated event, Emitter<HomeState> emit) async {
@@ -40,7 +42,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _fetchMoviesDetail(FetchMovieDetail event, Emitter<HomeState> emit) async {
     final responseMoviesDetail = await moviesRepository.getMoviesDetail(movieId: event.movieId);
-    print('hahahaha ---> $responseMoviesDetail');
+    print('hahahaha ---> ${responseMoviesDetail.genres?.first.name}');
     emit(state.copyWith(moviesDetail: responseMoviesDetail));
+  }
+
+  FutureOr<void> _fetchCastCrew(FetchCastCrew event, Emitter<HomeState> emit) async {
+    final responseCastCrew = await moviesRepository.getCastCrew(movieId: event.movieId);
+    emit(state.copyWith(castCrewModel: responseCastCrew));
   }
 }

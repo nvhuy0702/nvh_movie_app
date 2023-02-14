@@ -4,6 +4,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:readmore/readmore.dart';
 import 'package:video_player/video_player.dart';
 import 'package:screenshot/screenshot.dart';
+import '../../../data/model/cast_crew_model.dart';
 import '../../../data/model/detail_movies_model.dart';
 import '../../../data/model/top_rated_movie.dart';
 import '../widget/chart_rating.dart';
@@ -16,7 +17,8 @@ class DetailMovie extends StatefulWidget {
   final MovieTopRated? movieTopRated;
   final int index;
   final MovieDetailModel? movieDetailModel;
-  const DetailMovie({Key? key, this.movieTopRated, required this.index,this.movieDetailModel}) : super(key: key);
+  final CastCrewModel? castCrewModel;
+  const DetailMovie({Key? key, this.movieTopRated, required this.index,this.movieDetailModel, this.castCrewModel}) : super(key: key);
 
   @override
   State<DetailMovie> createState() => _DetailMovieState();
@@ -416,14 +418,14 @@ class _DetailMovieState extends State<DetailMovie> {
                   height: 24,
                 ),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Thể loại: ',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Khoa học viễn tưởng, robot',
-                        style: TextStyle(fontWeight: FontWeight.normal),
+                        text: '${widget.movieDetailModel?.genres?.first.name}',
+                        style: const TextStyle(fontWeight: FontWeight.normal),
                       ),
                     ],
                   ),
@@ -452,15 +454,15 @@ class _DetailMovieState extends State<DetailMovie> {
                   height: 100,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Row(
+                    itemBuilder: (context, indexCrew) => Row(
                       children: [
                         Container(
                           height: 60,
                           width: 60,
-                          decoration: const BoxDecoration(
+                          decoration:  BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/avatar.png"),
+                              image: NetworkImage("https://image.tmdb.org/t/p/w500${widget.castCrewModel?.cast?[indexCrew].profilePath}"),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -469,16 +471,16 @@ class _DetailMovieState extends State<DetailMovie> {
                           width: 24,
                         ),
                         RichText(
-                          text: const TextSpan(
-                            text: 'Nguyễn Văn Huy\n',
-                            style: TextStyle(
+                          text:  TextSpan(
+                            text: '${widget.castCrewModel?.cast?[indexCrew].name}\n',
+                            style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'Tấu hề',
-                                style: TextStyle(
+                                text: widget.castCrewModel?.cast?[indexCrew].knownForDepartment ?? "",
+                                style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                     color: Colors.grey),
                               ),
