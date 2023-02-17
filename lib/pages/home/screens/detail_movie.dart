@@ -230,7 +230,7 @@ class _DetailMovieState extends State<DetailMovie> {
                         color: Colors.black, fontWeight: FontWeight.bold),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '${widget.movieDetailModel?.genres?.first.name}',
+                        text: '${widget.movieDetailModel?.genres?.map((e) => e.name).toList().toString()}',
                         style: const TextStyle(fontWeight: FontWeight.normal),
                       ),
                     ],

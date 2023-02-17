@@ -42,7 +42,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _fetchMoviesDetail(FetchMovieDetail event, Emitter<HomeState> emit) async {
     final responseMoviesDetail = await moviesRepository.getMoviesDetail(movieId: event.movieId);
-    print('hahahaha ---> ${responseMoviesDetail.genres?.first.name}');
     emit(state.copyWith(moviesDetail: responseMoviesDetail));
   }
 
