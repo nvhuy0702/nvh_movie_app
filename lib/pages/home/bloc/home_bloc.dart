@@ -47,6 +47,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _fetchCastCrew(FetchCastCrew event, Emitter<HomeState> emit) async {
     final responseCastCrew = await moviesRepository.getCastCrew(movieId: event.movieId);
+    print('responseCastCrew => $responseCastCrew');
     emit(state.copyWith(castCrewModel: responseCastCrew));
   }
 }

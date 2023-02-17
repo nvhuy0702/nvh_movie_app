@@ -150,8 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           onTap: () {
                                             _bloc.add(FetchMovieDetail(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
                                             _bloc.add(FetchCastCrew(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
-                                            print('state.castCrewModel => ${state.castCrewModel?.cast?[index].knownForDepartment}');
-                                            Future.delayed(Duration(seconds: 1)).then((value) => Navigator.of(context).push(
+                                            Future.delayed(const Duration(seconds: 1)).then((value) => Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: (_) =>
                                                     DetailMovie(

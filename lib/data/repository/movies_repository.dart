@@ -47,7 +47,8 @@ class MoviesRepository {
   }
   FutureOr<CastCrewModel> getCastCrew({String? movieId}) async {
     try {
-      final result = await MoviesService().getCastCrew(movieId: "238");
+      final result = await MoviesService().getCastCrew(movieId: movieId);
+      print("result $result");
       return CastCrewModel.fromJson(result);
     } catch (e) {
       throw Exception(e);
