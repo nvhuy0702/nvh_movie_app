@@ -230,7 +230,7 @@ class _DetailMovieState extends State<DetailMovie> {
                         color: Colors.black, fontWeight: FontWeight.bold),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '${widget.movieDetailModel?.genres?.map((e) => e.name).toList().toString()}',
+                        text: '${widget.movieDetailModel?.genres?.map((e) => e.name).toList().toString().replaceAll(RegExp('\\['), '').replaceAll(RegExp('\\]'), '')}',
                         style: const TextStyle(fontWeight: FontWeight.normal),
                       ),
                     ],
@@ -325,10 +325,10 @@ class _DetailMovieState extends State<DetailMovie> {
                             border: Border(
                                 top: BorderSide(
                                     color: Colors.grey, width: 0.5))),
-                        child: TabBarView(
+                        child: const TabBarView(
                           children: <Widget>[
-                            const VideoPlayerScreen(),
-                            const MoreLikeThis(),
+                            VideoPlayerScreen(),
+                            MoreLikeThis(),
                             CommentWidget(
                               description: "",
                             )

@@ -1,4 +1,6 @@
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:nvh_movie_app/pages/home/widget/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
 class VideoPlayerScreen extends StatefulWidget {
   const VideoPlayerScreen({super.key});
@@ -8,8 +10,36 @@ class VideoPlayerScreen extends StatefulWidget {
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
+  late FlickManager flickManager;
+  Map<String, dynamic> mockData = {
+    "items": [
+      {
+        "title": "Rio from Above",
+        "image": "images/rio_from_above_poster.jpg",
+        "trailer_url":
+        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/rio_from_above_compressed.mp4?raw=true",
+      },
+      {
+        "title": "The Valley",
+        "image": "images/the_valley_poster.jpg",
+        "trailer_url":
+        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/the_valley_compressed.mp4?raw=true",
+      },
+      {
+        "title": "Iceland",
+        "image": "images/iceland_poster.jpg",
+        "trailer_url":
+        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/iceland_compressed.mp4?raw=true",
+      },
+      {
+        "title": "9th May & Fireworks",
+        "image": "images/9th_may_poster.jpg",
+        "trailer_url":
+        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/9th_may_compressed.mp4?raw=true",
+      },
+    ]
+  };
+
 
   @override
   void initState() {
@@ -18,22 +48,27 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     // Create and store the VideoPlayerController. The VideoPlayerController
     // offers several different constructors to play videos from assets, files,
     // or the internet.
-    _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    flickManager = FlickManager(
+      videoPlayerController: VideoPlayerController.network(
+        mockData["items"][0]["trailer_url"],
+        closedCaptionFile: _loadCaptions(),
+      ),
     );
-
     // Initialize the controller and store the Future for later use.
-    _initializeVideoPlayerFuture = _controller.initialize();
 
     // Use the controller to loop the video.
-    _controller.setLooping(true);
+  }
+  Future<ClosedCaptionFile> _loadCaptions() async {
+    final String fileContents = await DefaultAssetBundle.of(context)
+        .loadString('assets/images/bumble_bee_captions.srt');
+    flickManager.flickControlManager!.toggleSubtitle();
+    return SubRipCaptionFile(fileContents);
   }
 
   @override
   void dispose() {
     // Ensure disposing of the VideoPlayerController to free up resources.
-    _controller.dispose();
-
+    flickManager.dispose();
     super.dispose();
   }
 
@@ -43,28 +78,29 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: 200,
-            width: 400,
-            child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
-              child: VideoPlayer(_controller),
+          VisibilityDetector(
+            key: ObjectKey(flickManager),
+            onVisibilityChanged: (visibility) {
+              if (visibility.visibleFraction == 0 && mounted) {
+                flickManager.flickControlManager?.autoPause();
+              } else if (visibility.visibleFraction == 1) {
+                flickManager.flickControlManager?.autoResume();
+              }
+            },
+            child: Container(
+              color: Colors.red,
+              child: FlickVideoPlayer(
+                flickManager: flickManager,
+                flickVideoWithControls: const FlickVideoWithControls(
+                  closedCaptionTextStyle: TextStyle(fontSize: 8),
+                  controls: FlickPortraitControls(),
+                ),
+                flickVideoWithControlsFullscreen: const FlickVideoWithControls(
+                  controls: FlickLandscapeControls(),
+                ),
+              ),
             ),
           ),
-          IconButton(onPressed: () {
-            setState(() {
-              // If the video is playing, pause it.
-              if (_controller.value.isPlaying) {
-                _controller.pause();
-              } else {
-                // If the video is paused, play it.
-                _controller.play();
-              }
-            });
-          }, icon: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ))
         ],
       ),
     );
