@@ -188,9 +188,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                   height: 48,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const AddNewCardScreen()));
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
