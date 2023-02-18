@@ -77,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         items: state.popularMovies?.results
                             ?.map(
                               (e) => Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Image(
                                   image: NetworkImage(
                                     "https://image.tmdb.org/t/p/w500${e.backdropPath}",
@@ -121,9 +122,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const TopMoviesScreen()));
+                                          MaterialPageRoute(
+                                            builder: (_) => TopMoviesScreen(
+                                              movieTopRated:
+                                                  state.movieTopRated,
+                                            ),
+                                          ),
+                                        );
                                       },
                                       child: const Text(
                                         "Xem tất cả",
@@ -148,19 +153,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                             vertical: 8),
                                         child: InkWell(
                                           onTap: () {
-                                            _bloc.add(FetchMovieDetail(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
-                                            _bloc.add(FetchCastCrew(movieId: _bloc.state.movieTopRated?.results?[index].id.toString()));
-                                            Future.delayed(const Duration(seconds: 1)).then((value) => Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) =>
-                                                    DetailMovie(
-                                                      index: index,
-                                                      movieTopRated: state.movieTopRated,
-                                                      castCrewModel: state.castCrewModel,
-                                                      movieDetailModel: state.moviesDetail,
-                                                    ),
-                                              ),
-                                            ));
+                                            _bloc.add(FetchMovieDetail(
+                                                movieId: _bloc
+                                                    .state
+                                                    .movieTopRated
+                                                    ?.results?[index]
+                                                    .id
+                                                    .toString()));
+                                            _bloc.add(FetchCastCrew(
+                                                movieId: _bloc
+                                                    .state
+                                                    .movieTopRated
+                                                    ?.results?[index]
+                                                    .id
+                                                    .toString()));
+                                            Future.delayed(
+                                                    const Duration(seconds: 1))
+                                                .then((value) =>
+                                                    Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                        builder: (_) =>
+                                                            DetailMovie(
+                                                          index: index,
+                                                          movieTopRated: state
+                                                              .movieTopRated,
+                                                          castCrewModel: state
+                                                              .castCrewModel,
+                                                          movieDetailModel:
+                                                              state
+                                                                  .moviesDetail,
+                                                        ),
+                                                      ),
+                                                    ));
                                           },
                                           child: ClipRRect(
                                             borderRadius:
@@ -190,9 +214,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const TopMoviesScreen()));
+                                          MaterialPageRoute(
+                                            builder: (_) => TopMoviesScreen(
+                                              moviesUpComing:
+                                                  state.moviesUpComing,
+                                            ),
+                                          ),
+                                        );
                                       },
                                       child: const Text(
                                         "Xem tất cả",
