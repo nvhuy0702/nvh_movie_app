@@ -19,24 +19,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         "trailer_url":
         "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/rio_from_above_compressed.mp4?raw=true",
       },
-      {
-        "title": "The Valley",
-        "image": "images/the_valley_poster.jpg",
-        "trailer_url":
-        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/the_valley_compressed.mp4?raw=true",
-      },
-      {
-        "title": "Iceland",
-        "image": "images/iceland_poster.jpg",
-        "trailer_url":
-        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/iceland_compressed.mp4?raw=true",
-      },
-      {
-        "title": "9th May & Fireworks",
-        "image": "images/9th_may_poster.jpg",
-        "trailer_url":
-        "https://github.com/GeekyAnts/flick-video-player-demo-videos/blob/master/example/9th_may_compressed.mp4?raw=true",
-      },
     ]
   };
 
@@ -44,19 +26,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
-
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
         mockData["items"][0]["trailer_url"],
         closedCaptionFile: _loadCaptions(),
       ),
     );
-    // Initialize the controller and store the Future for later use.
-
-    // Use the controller to loop the video.
   }
   Future<ClosedCaptionFile> _loadCaptions() async {
     final String fileContents = await DefaultAssetBundle.of(context)
@@ -67,7 +42,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
     flickManager.dispose();
     super.dispose();
   }
