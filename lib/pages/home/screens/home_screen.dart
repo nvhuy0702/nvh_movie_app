@@ -1,10 +1,12 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nvh_movie_app/pages/home/screens/detail_movie.dart';
 import 'package:nvh_movie_app/pages/home/screens/profile_screen.dart';
 import 'package:nvh_movie_app/pages/home/screens/top_movie_screen.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sliver_header_delegate/sliver_header_delegate.dart';
 
 import '../../../data/repository/movies_repository.dart';
@@ -74,20 +76,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           autoPlay: true,
                           height: MediaQuery.of(context).size.height,
                         ),
-                        items: state.popularMovies?.results
-                            ?.map(
-                              (e) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Image(
-                                  image: NetworkImage(
-                                    "https://image.tmdb.org/t/p/w500${e.backdropPath}",
+                        items: state.popularMovies?.results == null
+                            ? [
+                                _shimmer(),
+                              ]
+                            : state.popularMovies?.results
+                                ?.map(
+                                  (e) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          "https://image.tmdb.org/t/p/w500${e.backdropPath}",
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                            .toList(),
+                                )
+                                .toList(),
                       ),
                     ),
                   ),
@@ -186,13 +193,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       ),
                                                     ));
                                           },
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            child: Image.network(
-                                              "https://image.tmdb.org/t/p/w500${state.movieTopRated?.results?[index].backdropPath}",
-                                            ),
-                                          ),
+                                          child: state.movieTopRated?.results ==
+                                                  null
+                                              ? _shimmer()
+                                              : ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl:
+                                                        "https://image.tmdb.org/t/p/w500${state.movieTopRated?.results?[index].backdropPath}",
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        const Icon(Icons.error),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
                                         ),
                                       );
                                     },
@@ -242,12 +257,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                     itemBuilder: (context, index) => Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 8),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(12),
-                                        child: Image.network(
-                                          "https://image.tmdb.org/t/p/w500${state.moviesUpComing?.results?[index].backdropPath}",
-                                        ),
-                                      ),
+                                      child: state.moviesUpComing?.results ==
+                                              null
+                                          ? _shimmer()
+                                          : ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    "https://image.tmdb.org/t/p/w500${state.moviesUpComing?.results?[index].backdropPath}",
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(Icons.error),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                     ),
                                   ),
                                 ),
@@ -446,6 +470,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  Widget _shimmer() {
+    return SizedBox(
+      height: 100,
+      width: 300,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300] ?? Colors.yellow,
+        highlightColor: Colors.grey[100] ?? Colors.yellow,
+        child: Container(
+          height: 50,
+          width: 200,
+          color: Colors.yellow,
+        ),
       ),
     );
   }
