@@ -6,6 +6,7 @@ import 'package:nvh_movie_app/data/model/cast_crew_model.dart';
 import '../model/detail_movies_model.dart';
 import '../model/popular_movies_model.dart';
 import '../model/top_rated_movie.dart';
+import '../model/trending_model.dart';
 import '../model/upcoming_movies_model.dart';
 import '../service/movies_service.dart';
 
@@ -14,6 +15,15 @@ class MoviesRepository {
     try {
       final result = await MoviesService().getMovieTopRated();
       return MovieTopRated.fromJson(result);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  FutureOr<TrendingModel> getMoviesTrending() async {
+    try {
+      final result = await MoviesService().getTrending();
+      return TrendingModel.fromJson(result);
     } catch (e) {
       throw Exception(e);
     }

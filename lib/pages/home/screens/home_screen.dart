@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _bloc.add(FetchMoviesTopRated());
     _bloc.add(FetchMoviesPopular());
     _bloc.add(FetchMoviesUpComing());
+    _bloc.add(FetchTrending());
     super.initState();
     _pageController = PageController();
     _focusNode.addListener(() {
@@ -189,6 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           movieDetailModel:
                                                               state
                                                                   .moviesDetail,
+                                                              trendingModel: state.trendingModel,
                                                         ),
                                                       ),
                                                     ));

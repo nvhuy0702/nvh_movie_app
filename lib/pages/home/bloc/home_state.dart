@@ -6,6 +6,7 @@ class HomeState {
   final MoviesUpComingModel? moviesUpComing;
   final MovieDetailModel? moviesDetail;
   final CastCrewModel? castCrewModel;
+  final TrendingModel? trendingModel;
 
   HomeState({
     this.movieTopRated,
@@ -13,6 +14,7 @@ class HomeState {
     this.moviesUpComing,
     this.moviesDetail,
     this.castCrewModel,
+    this.trendingModel,
   });
 
   HomeState copyWith({
@@ -21,6 +23,7 @@ class HomeState {
     MoviesUpComingModel? moviesUpComing,
     MovieDetailModel? moviesDetail,
     CastCrewModel? castCrewModel,
+    TrendingModel? trendingModel,
   }) {
     return HomeState(
       movieTopRated: movieTopRated ?? this.movieTopRated,
@@ -28,6 +31,7 @@ class HomeState {
       moviesUpComing: moviesUpComing ?? this.moviesUpComing,
       moviesDetail: moviesDetail ?? this.moviesDetail,
       castCrewModel: castCrewModel ?? this.castCrewModel,
+      trendingModel: trendingModel ?? this.trendingModel,
     );
   }
 }

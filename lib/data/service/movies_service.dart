@@ -23,6 +23,16 @@ class MoviesService {
     }
   }
 
+  Future getTrending() async {
+    try {
+      final response =
+      await Dio().get(ApiMovie.trending);
+      return response.data;
+    } on DioError catch (e) {
+      throw Exception(e.message);
+    }
+  }
+
   Future getMovieUpComing() async {
     try {
       final response =

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:nvh_movie_app/data/model/trending_model.dart';
 import 'package:readmore/readmore.dart';
 import 'package:video_player/video_player.dart';
 import 'package:screenshot/screenshot.dart';
@@ -18,7 +19,16 @@ class DetailMovie extends StatefulWidget {
   final int index;
   final MovieDetailModel? movieDetailModel;
   final CastCrewModel? castCrewModel;
-  const DetailMovie({Key? key, this.movieTopRated, required this.index,this.movieDetailModel, this.castCrewModel}) : super(key: key);
+  final TrendingModel? trendingModel;
+
+  const DetailMovie(
+      {Key? key,
+      this.movieTopRated,
+      required this.index,
+      this.movieDetailModel,
+      this.castCrewModel,
+      this.trendingModel})
+      : super(key: key);
 
   @override
   State<DetailMovie> createState() => _DetailMovieState();
@@ -133,26 +143,29 @@ class _DetailMovieState extends State<DetailMovie> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                   Row(
-                     children: [
-                       const Icon(
-                         Icons.star,
-                         color: Color(0xFF2B3467),
-                       ),
-                       const SizedBox(
-                         width: 8,
-                       ),
-                       GestureDetector(
-                           onTap: ()=>  buildShowModalBottomSheet(context, data),
-                           child: Text("${data?.voteAverage.toString()}")),
-                       const SizedBox(
-                         width: 16,
-                       ),
-                       Text(DateFormat("yyyy-MM-dd").format(data?.releaseDate ?? DateTime.now())),
-                     ],
-                   ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Color(0xFF2B3467),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        GestureDetector(
+                            onTap: () =>
+                                buildShowModalBottomSheet(context, data),
+                            child: Text("${data?.voteAverage.toString()}")),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Text(DateFormat("yyyy-MM-dd")
+                            .format(data?.releaseDate ?? DateTime.now())),
+                      ],
+                    ),
                     _typeMovie(
-                        content: "${data?.genreIds?.first} - ${data?.genreIds?.last}",
+                        content:
+                            "${data?.genreIds?.first} - ${data?.genreIds?.last}",
                         style: const TextStyle(
                             color: Color(0xFF2B3467), fontSize: 16)),
                   ],
@@ -230,7 +243,8 @@ class _DetailMovieState extends State<DetailMovie> {
                         color: Colors.black, fontWeight: FontWeight.bold),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '${widget.movieDetailModel?.genres?.map((e) => e.name).toList().toString().replaceAll(RegExp('\\['), '').replaceAll(RegExp('\\]'), '')}',
+                        text:
+                            '${widget.movieDetailModel?.genres?.map((e) => e.name).toList().toString().replaceAll(RegExp('\\['), '').replaceAll(RegExp('\\]'), '')}',
                         style: const TextStyle(fontWeight: FontWeight.normal),
                       ),
                     ],
@@ -265,10 +279,11 @@ class _DetailMovieState extends State<DetailMovie> {
                         Container(
                           height: 60,
                           width: 60,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: NetworkImage("https://image.tmdb.org/t/p/w500${widget.castCrewModel?.cast?[indexCrew].profilePath}"),
+                              image: NetworkImage(
+                                  "https://image.tmdb.org/t/p/w500${widget.castCrewModel?.cast?[indexCrew].profilePath}"),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -277,15 +292,18 @@ class _DetailMovieState extends State<DetailMovie> {
                           width: 24,
                         ),
                         RichText(
-                          text:  TextSpan(
-                            text: '${widget.castCrewModel?.cast?[indexCrew].name}\n',
+                          text: TextSpan(
+                            text:
+                                '${widget.castCrewModel?.cast?[indexCrew].name}\n',
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: widget.castCrewModel?.cast?[indexCrew].knownForDepartment ?? "",
+                                text: widget.castCrewModel?.cast?[indexCrew]
+                                        .knownForDepartment ??
+                                    "",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                     color: Colors.grey),
@@ -325,11 +343,13 @@ class _DetailMovieState extends State<DetailMovie> {
                             border: Border(
                                 top: BorderSide(
                                     color: Colors.grey, width: 0.5))),
-                        child: const TabBarView(
+                        child: TabBarView(
                           children: <Widget>[
-                            VideoPlayerScreen(),
-                            MoreLikeThis(),
-                            CommentWidget(
+                            const VideoPlayerScreen(),
+                            MoreLikeThis(
+                              trendingModel: widget.trendingModel,
+                            ),
+                            const CommentWidget(
                               description: "",
                             )
                           ],
